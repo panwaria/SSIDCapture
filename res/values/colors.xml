@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BASIC COLORS -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="green">#00FF00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="mids_gray">#808080</color>
+    
+    <color name="default_background_color">#E9FFDB</color>
+    
+    <!-- ListView Items -->
+    <color name="device_list_item_layout_background">#DDDDDD</color>
+    <color name="device_name_text_background">#C0C0C0</color>
+    
+    <!-- Fragment Level -->
+    <color name="device_fragment_background">#F0F0F0</color>
+    
+    
+    
+</resources>

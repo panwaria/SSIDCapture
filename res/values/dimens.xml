@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- DEVICE/ListView Items -->
+    <dimen name="device_list_view_divider_height">8dp</dimen>
+    <dimen name="device_list_item_padding_bottom">3dp</dimen>
+    
+    <!-- Fragment level -->
+    <dimen name="device_fragment_padding_horizontal">30dp</dimen>
+    <dimen name="device_fragment_padding_vertical">10dp</dimen>
+    <dimen name="device_name_text_size">18sp</dimen>
+    <dimen name="toggle_button_text_size">18sp</dimen>
+    
+    <!-- Events Fragment -->
+    <dimen name="no_device_message_text_size">18sp</dimen>
+    
+    <!-- DEVICE/ExpandableListAdapter -->
+    <dimen name="child_layout_padding">10dp</dimen>
+    <dimen name="child_view_label_text_size">15sp</dimen>
+    <dimen name="child_label_vertical_gap">10dp</dimen>
+    <dimen name="child_label_hotizontal_gap">10dp</dimen>
+    
+</resources>

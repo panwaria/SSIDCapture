@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wifiinfo_fragment_layout_old"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/black" >
+    
+    <TextView
+        android:id="@+id/wifiinfo_no_device_message_old"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		android:textColor="@color/white"
+		android:textSize="@dimen/no_device_message_text_size"
+        android:gravity="center"
+        android:text="@string/no_ssid_detected" />
+        
+    <ListView 
+        android:id="@+id/list_wifiinfo_old"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transcriptMode="normal"
+        android:divider="@color/default_background_color"
+        android:dividerHeight="1dip"
+   	 	android:layout_marginLeft="15dip"
+    	android:layout_marginRight="15dip" />
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back01" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <Button
+	        android:id="@+id/mylist_button_start"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Start"
+	        android:onClick="onClick"
+	        android:textSize="22sp"
+	        android:textColor="#FFFFFF"
+	        android:layout_weight="1" />
+
+	    <Button
+	        android:id="@+id/mylist_button_stop"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Stop"
+	        android:onClick="onClick"
+	        android:textSize="22sp"
+	        android:textColor="#FFFFFF"
+	        android:layout_weight="1" />
+	
+	    <Button
+	        android:id="@+id/mylist_button_results"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Results"
+	        android:onClick="onClick"
+	        android:textSize="22sp"
+	        android:textColor="#FFFFFF"
+	        android:layout_weight="1"
+	        android:visibility="gone" />
+	    
+    </LinearLayout>
+    
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:src="@drawable/icon" />
+        
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="List of Detected SSIDs"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+   	 	android:layout_marginLeft="3dip"
+    	android:layout_marginRight="3dip" >
+	    
+	    <ListView
+	        android:id="@id/android:list"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone" />
+	    
+	    <TextView
+	        android:id="@+id/wifiinfo_no_device_message"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+			android:textColor="@color/white"
+			android:textSize="@dimen/no_device_message_text_size"
+	        android:gravity="center"
+	        android:text="@string/no_ssid_detected" />
+	    
+	     <ListView 
+	        android:id="@+id/list_wifiinfo"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_marginTop="10dp"
+	        android:transcriptMode="normal"
+	        android:divider="@color/default_background_color"
+	        android:dividerHeight="1dip" />
+
+     </FrameLayout>
+     
+</LinearLayout> 

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_about">About</string>
+    
+    <string name="app_name">Wireless@Home</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    
+    <!-- Overall UI -->
+    <string name="devices_section_title">Device</string>
+    <string name="events_section_title">Event</string>
+    <string name="waterfall_section_title">Heat</string>
+    <string name="wifiinfo_section_title">SSID</string>
+    <string name="utilization_section_title">C.Util</string>
+    <string name="measurement_section_title">A.M.</string>
+    
+    <string name="test_list_view">Test List View</string>
+    <string name="show_waterfall">Show Waterfall</string>
+
+    <string name="no_active_devices">No non-WiFi activity found</string>
+    <string name="no_inactive_devices">No non-WiFi activity found</string>
+    <string name="test_list">Test List View</string>
+    <string name="toggle_button">Toggle Button</string>
+    <string name="devices">Devices</string>
+    <string name="devices_left">&lt;&lt;&lt;Devices</string>
+    <string name="devices_right">&gt;&gt;&gt;Devices</string>
+    <string name="events">Events</string>
+    <string name="events_left">&lt;&lt;&lt;Events</string>
+    <string name="events_right">&gt;&gt;&gt;Events</string>
+    <string name="waterfall">Waterfall</string>
+    <string name="waterfall_left">&lt;&lt;&lt;Waterfall</string>
+    <string name="waterfall_right">&gt;&gt;&gt;Waterfall</string>
+    <string name="devices_vert">D\ne\nv\ni\nc\ne\ns</string>
+    <string name="events_vert">E\nv\ne\nn\nt\ns</string>
+    <string name="waterfall_vert">W\na\nt\ne\nr\nf\na\nl\nl</string>
+    <string name="active">Current Activity</string>
+    <string name="inactive">Previous Activity</string>
+    <string name="device">Device</string>
+    <string name="start_time">Start Time:</string>
+    <string name="end_time">End Time:</string>
+    <string name="duration_time">Duration:</string>
+    <string name="freq_range">BW:</string>
+    <string name="channel">Channel:</string>
+    <string name="rssi">RSSI:</string>
+    <string name="plotTitle">Active Device Signals</string>
+    <string name="contentDescription">An Image</string>
+    
+    <!-- Events Related -->
+    <string name="no_device_detected">No non-WiFi activity found</string>
+    
+    <!-- SSID Related -->
+    <string name="no_ssid_detected">Waiting for SSID results...</string>
+    <string name="ssid_not_avaliable">SSID results not available</string>
+    
+    <string name="dataUploadService">Data Upload Service</string>
+    
+    <!-- Waterfall Related -->
+    <string name="channel1">Channel 1</string>
+    <string name="channel3">Channel 3</string>
+    <string name="channel6">Channel 6</string>
+    <string name="channel9">Channel 9</string>
+    <string name="channel11">Channel 11</string>
+    <string name="no_device_channel_template">No waterfall data available for</string>
+    <string name="default_channel">Channel 1</string>
+    <string name="default_no_device_channel">Airshark not Started!</string>
+    
+	<!-- TEST BED Related -->
+    <string name="serverStatus">[Server Status]</string>
+    <string name="pushToSocket">Push Data To Socket</string>
+    <string name="messageFromClient">[Message From Client]</string>
+    
+    <!-- SETTINGS Related -->
+    <string name="allow_upload_summary">Allow application to upload logs to Airshark Server</string>
+    <string name="allow_upload_title">Upload Logs</string>
+    <string name="record_location_summary">Allow application to track device location</string>
+    <string name="record_location_title">Record Location</string>
+    <string name="use_gps_summary">Allow application to use GPS to record location</string>
+    <string name="use_gps_title">Use GPS</string>
+    <string name="update_loc_freq_summary">Frequency by which application updates frequency</string>
+    <string name="update_loc_freq_title">Update Location Frequency (in minutes)</string>
+    <string name="network_settings_category_title">Network Settings</string>
+    
+    <!-- DATA UPLOAD SERVICE -->
+    <string name="service_notification_title">Airshark Data Upload Service</string>
+    <string name="service_notification_text">"Tap to stop the service."</string>
+    
+    <!-- WIFIINFO Related -->
+    <string name="ssid_label">SSID:</string>
+    <string name="mac_label">MAC:</string>
+    <string name="signal_label">Signal:</string>
+    <string name="freq_label">Freq:</string>
+    
+    <!-- Utilization Related -->
+    <string name="channel_label">Change Channel</string>
+    
+    <!-- IPERF Related -->
+    <string name="iperf_text">iPerf for Android</string>
+    <color name="WelcomeTextColor">#fffafa</color>
+    <string name="i"> i</string>
+    <string name="copyright">Developed by Shir Degani &amp; Yuval Degani © 2011</string>
+    <string name="help_button_title">&quot;?&quot;</string>
+    
+    <!-- Active Measurement Related -->
+    <string name="ip_address">IP Address</string>
+    <string name="throughput_label">Throughput</string>
+    <string name="bandwidth_label">Bandwidth</string>
+    <string name="value_placeholder">VALUE</string>
+    <string name="measurement_json">{"platform":1,"cellSignal":12,"activeType":1,"deviceID":"tester","wifiAvail":2,"wifiFO":0,"wifiState":1,"cellSubtype":8,"wifiCon":1,"wifiSpeed":54,"cellState":5,"sessionID":1,"activeSub":0,"wifiSubtype":0,"cellFO":0,"cellConn":0,"cellAvail":1,"wifiRssi":-38,"appID":1}</string>
+    
+    <!-- ABOUT -->
+    <string name="about_description">
+	<![CDATA[
+	<html>
+	 <head></head>
+	 <body style="text-align:justify;color:gray;">
+	 
+	 Version: 1.0 <br>
+	 
+	 <h3 style="text-align:center;color:gray;">ABOUT</h3>
+	 The app has been developed by a team of researchers in the WiNGS laboratory at the University of Wisconsin-Madison, USA. The current version of the app is being provided at no cost for non-commercial use only. The app can be used to collect spectral samples from the WiFi bands and to analyze these samples to infer various non-WiFi devices (Bluetooth, ZigBee, cordless phones, microwave ovens) that are operating in the vicinity. The app also collects infrequent location information during its operation --- this allows us to analyze spatial behavior of spectral activity in the WiFi bands.
+	 
+	 <br>
+	 <h3 style="text-align:center;color:gray;">ACCESS TO DEVICE DATA</h3>
+The data from each device is uploaded to our server. A user can access this data using the unique key corresponding to this device. The user can locate this key from Settings. The app does not collect any identifiable information about the device that can be mapped
+to this key, and hence this key provides anonymity to users and devices when they access the data. The data can be downloaded and stored as a CSV file.
+
+	<br>
+	<h3 style="text-align:center;color:gray;">USER CONTROLS</h3>
+The app provides users with  multiple settings through which they can control the above behavior. The app can be configured to determine location using WiFi or cellular signals only, which is known to be less accurate than using GPS. The app can also be configured to completely disable collection of location information. Finally, the app provides an option through which no data is uploaded to the server.
+
+	<br>
+	<h3 style="text-align:center;color:gray;">DATA PLANS</h3>
+All data upload to the server is done only over WiFi. Even if the device has a 3G/4G data plan, the collected data is never uploaded using such a plan. Hence, the user needs to keep WiFi on. 
+
+	<br>
+	 <h3 style="text-align:center;color:gray;">RESEARCH USE OF DATA</h3>
+The data being collected in the server is going to be used for research purposes to better understand and analyze spectral behavior. The location information collected will allow researchers to understand spatial behavior of wireless interference patterns across bands. The data collected does not carry any personalized information of users, and hence no such analysis of personalized behavior is going to be attempted on this data. The spectral sample data collected may be published by the WiNGS laboratory team through a public data repository to benefit the broad community. The actual location coordinates of any individual device collected through this app will never to put in the public domain.
+
+	<br>
+	 <h3 style="text-align:center;color:gray;">OTHER FINE PRINT</h3>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	<br>
+	 <h3 style="text-align:center;color:gray;">CONTACT</h3>
+If you have questions, comments, and suggestions, please do not hesitate to contact us at "uwairshark@gmail.com"
+You can also visit the following website for more information: "WEBSITE"
+	
+	</body>
+	</html>
+	]]>
+	</string>
+
+</resources>
