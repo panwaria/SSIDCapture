@@ -15,10 +15,11 @@
 	        android:id="@+id/mylist_button_start"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Start"
+	        android:text="Take SSID Snapshot"
 	        android:onClick="onClick"
 	        android:textSize="22sp"
-	        android:textColor="#FFFFFF"
+	        android:textColor="#666666"
+	        android:layout_margin="10dip"
 	        android:layout_weight="1" />
 
 	    <Button
@@ -29,7 +30,8 @@
 	        android:onClick="onClick"
 	        android:textSize="22sp"
 	        android:textColor="#FFFFFF"
-	        android:layout_weight="1" />
+	        android:layout_weight="1"
+	        android:visibility="gone" />
 	
 	    <Button
 	        android:id="@+id/mylist_button_results"
@@ -58,6 +60,7 @@
         android:text="List of Detected SSIDs"
         android:gravity="center_horizontal"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="#FFFFFF" />
 
     <FrameLayout
@@ -79,9 +82,9 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 			android:textColor="@color/white"
-			android:textSize="@dimen/no_device_message_text_size"
+			android:textSize="16sp"
 	        android:gravity="center"
-	        android:text="@string/no_ssid_detected" />
+	        android:text="Press the button above to start." />
 	    
 	     <ListView 
 	        android:id="@+id/list_wifiinfo"

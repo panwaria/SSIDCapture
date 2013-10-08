@@ -155,7 +155,7 @@ public class WAHLogger
     	}
     	
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yy_MM_dd_HH_mm_ss", Locale.ENGLISH);
-    	String fileName = baseName + ((WirelessAtHomeService)mContext).mDeviceID + "_" + dateFormat.format(new Date());
+    	String fileName = baseName + ((MyListActivity)mContext).mDeviceID + "_" + dateFormat.format(new Date());
     	
     	switch(jsonType)
     	{

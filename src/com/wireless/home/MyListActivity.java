@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,9 +25,16 @@ import android.widget.Toast;
 
 public class MyListActivity extends ListActivity
 {
-    private WirelessAtHomeService mWAHService;
+//    private WirelessAtHomeService mWAHService;
     private ArrayAdapter<String> mAdapter;
     private List<String> mMACIDList;
+    
+    // WIFI INFO RUNNABLE & THREAD
+    private WifiInfoRunnable mWifiInfoRunnable = null;
+    public volatile Thread mWifiInfoThread = null;
+    
+    // AIRSHARK LOGGER Related
+    private WAHLogger mWAHLogger = null;
     
 //    private ArrayList<WifiData> mWifiDataList;
 //    private ArrayAdapter<WifiData> mWifiDataAdapter;
@@ -46,33 +54,35 @@ public class MyListActivity extends ListActivity
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.activity_mylist);
     	
-    	mMACIDList = new ArrayList<String>();
-    	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, mMACIDList);
-    	setListAdapter(mAdapter);
+//    	mMACIDList = new ArrayList<String>();
+//    	mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, mMACIDList);
+//    	setListAdapter(mAdapter);
     	
-    	doBindWAHService();
+//    	doBindWAHService();
+    	
+		getDeviceID();
     }
     
     public void onResume()
     {
     	// Setting up the broadcast receiver to receive any signal when to update SSID List.
-    	mMyReceiver = new MyReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(WirelessAtHomeService.MY_ACTION);
-        registerReceiver(mMyReceiver, intentFilter);
-        
+//    	mMyReceiver = new MyReceiver();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(WirelessAtHomeService.MY_ACTION);
+//        registerReceiver(mMyReceiver, intentFilter);
+//        
     	// Stop if Data Upload Service already running
-		stopDataUploadService();
+//		stopDataUploadService();
 		
         super.onResume();
     }
     
     public void onPause()
     {
-    	unregisterReceiver(mMyReceiver);
+//    	unregisterReceiver(mMyReceiver);
     	
     	// Now is the best time to upload recorded data.
-    	uploadRecordedSSIDData();
+//    	uploadRecordedSSIDData();
     	
     	super.onPause();
     }
@@ -85,11 +95,14 @@ public class MyListActivity extends ListActivity
         try 
         {
         	// Just unbind the services from this application, do not stop it.
-            doUnbindDataUploadService();
+//            doUnbindDataUploadService();
         	
-            doUnbindWAHService();
+//            doUnbindWAHService();
         } 
         catch (Throwable t) { }
+        
+        // Kill the SSID Scan Thread.
+        stopWifiInfoRunnable();
     }
     
     @Override
@@ -110,8 +123,8 @@ public class MyListActivity extends ListActivity
 				Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();
 				
 				// Unbinding from the service and stopping it
-				doUnbindWAHService();
-				stopService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
+//				doUnbindWAHService();
+//				stopService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
 				
 				// Destroying activity
 				finish();
@@ -124,7 +137,7 @@ public class MyListActivity extends ListActivity
 	}
     
     // WAH SERVICE RELATED
-	 
+	/*
     private ServiceConnection mWAHServiceConnection = new ServiceConnection() 
     {
     	public void onServiceConnected(ComponentName className, IBinder binder)
@@ -150,11 +163,11 @@ public class MyListActivity extends ListActivity
     {
       if (mWAHService != null) 
       {
-        Toast.makeText(this, "Number of elements = " + mWAHService.getMACIDList().size(), Toast.LENGTH_SHORT).show();
-        
-        mMACIDList.clear();
-        mMACIDList.addAll(mWAHService.getMACIDList());
-        mAdapter.notifyDataSetChanged();
+//        Toast.makeText(this, "Number of elements = " + mWAHService.getMACIDList().size(), Toast.LENGTH_SHORT).show();
+//        
+//        mMACIDList.clear();
+//        mMACIDList.addAll(mWAHService.getMACIDList());
+//        mAdapter.notifyDataSetChanged();
       }
     }
 	
@@ -169,6 +182,8 @@ public class MyListActivity extends ListActivity
             Toast.makeText(this, "Unbinding Wireless@Home Service", Toast.LENGTH_SHORT).show();
         }
     }
+	*/
+	
 	
 	// UI UPDATES RELATED
 	
@@ -178,24 +193,37 @@ public class MyListActivity extends ListActivity
 		{
 		case R.id.mylist_button_start:
 			
-			Toast.makeText(this, "Starting Wireless@Home Service", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Starting WifiInfoRunnable", Toast.LENGTH_SHORT).show();
+
+			if(mWifiInfoRunnable == null)
+				startWifiInfoRunnable();
+			else
+			{
+				// Restart WifiInfoRunnable;
+				stopWifiInfoRunnable();
+				startWifiInfoRunnable();
+			}
 			
-		    startService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
+//			Toast.makeText(this, "Starting Wireless@Home Service", Toast.LENGTH_SHORT).show();
+//		    startService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
 		    
 		    break;
 		    
 		case R.id.mylist_button_stop:
 			
-			Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Stopping WifiInfoRunnable", Toast.LENGTH_SHORT).show();
+			stopWifiInfoRunnable();
 			
-			doUnbindWAHService();
-			stopService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
+//			Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();
+			
+//			doUnbindWAHService();
+//			stopService(new Intent(MyListActivity.this, WirelessAtHomeService.class));
 			
 			break;
 			
 		case R.id.mylist_button_results:
 			
-			showWAHServiceData();
+//			showWAHServiceData();
 			break;
 		}
 	}
@@ -211,6 +239,7 @@ public class MyListActivity extends ListActivity
       super.onListItemClick(l, v, position, id);
     }
     
+     /*
     private MyReceiver mMyReceiver = null;
     private class MyReceiver extends BroadcastReceiver
     {
@@ -229,8 +258,9 @@ public class MyListActivity extends ListActivity
 	 						Toast.LENGTH_LONG).show();
     	 }
 	}
+	*/
     
-    private void ssidScanUnsuccessful()
+    public void ssidScanUnsuccessful()
     {
 		TextView noWifiInfoMessage = (TextView) findViewById(R.id.wifiinfo_no_device_message);
 		
@@ -241,12 +271,12 @@ public class MyListActivity extends ListActivity
 		}
     }
     
-    private void updateWifiData()
-    {
-    	ArrayList<WifiData> wifiDataList = mWAHService.getWifiDataList();
-    	
-    	showWifiData(wifiDataList);
-    }
+//    public void updateWifiData()
+//    {
+//    	ArrayList<WifiData> wifiDataList = mWAHService.getWifiDataList();
+//    	
+//    	showWifiData(wifiDataList);
+//    }
     
     public void showWifiData(ArrayList<WifiData> wifiDataList)
     {
@@ -370,5 +400,49 @@ public class MyListActivity extends ListActivity
             	Log.d("MainActivity", "Unbinding Data Upload Service");
         }
     }
+	
+	// WIFI INFO RUNNABLE
+	  /**
+	   * Method to start WiFiInfoRunnable.
+	   */    
+	  private void startWifiInfoRunnable()
+	  {
+	  	if(mWAHLogger == null)
+	      	mWAHLogger = new WAHLogger(this);
+	  	
+			if(mWifiInfoRunnable == null)
+				mWifiInfoRunnable = new WifiInfoRunnable(this, mWAHLogger);
+			
+			if(mWifiInfoThread == null) 
+			{
+				mWifiInfoThread = new Thread(mWifiInfoRunnable);
+				mWifiInfoThread.start();
+			}	
+	  }
+	  
+	  /**
+	   * Method to stop WiFiInfoRunnable.
+	   */
+	  private void stopWifiInfoRunnable()
+	  {
+		if(mWifiInfoRunnable != null)
+			mWifiInfoRunnable.removeReciever();
+		
+	  	mWifiInfoThread = null;
+	  	mWifiInfoRunnable = null;
+	  }
+	  
+	  public Integer mDeviceID = -1;		// Android Device ID
+	  public void getDeviceID()
+	  {
+	      // Get Device ID
+	      String mDeviceIDStr = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+			mDeviceID = Math.abs(mDeviceIDStr.hashCode());
+			 if(AppConstants.SHOW_LOGS)
+			 {
+				 Log.d("MainActivity", "mDeviceIDStr = " + mDeviceIDStr);
+				 Log.d("MainActivity", "mDeviceID (Hashed) = " + mDeviceID);
+			 }
+	  }
 
 } 
