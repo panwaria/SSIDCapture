@@ -120,7 +120,7 @@ public class MyListActivity extends ListActivity
 	    {
 	        case R.id.menu_quit:
 	        	
-				Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();
 				
 				// Unbinding from the service and stopping it
 //				doUnbindWAHService();
@@ -193,7 +193,8 @@ public class MyListActivity extends ListActivity
 		{
 		case R.id.mylist_button_start:
 			
-			Toast.makeText(this, "Starting WifiInfoRunnable", Toast.LENGTH_SHORT).show();
+			if(AppConstants.SHOW_TOASTS)
+				Toast.makeText(this, "Starting WifiInfoRunnable", Toast.LENGTH_SHORT).show();
 
 			if(mWifiInfoRunnable == null)
 				startWifiInfoRunnable();
@@ -211,7 +212,8 @@ public class MyListActivity extends ListActivity
 		    
 		case R.id.mylist_button_stop:
 			
-			Toast.makeText(this, "Stopping WifiInfoRunnable", Toast.LENGTH_SHORT).show();
+			if(AppConstants.SHOW_TOASTS)
+				Toast.makeText(this, "Stopping WifiInfoRunnable", Toast.LENGTH_SHORT).show();
 			stopWifiInfoRunnable();
 			
 //			Toast.makeText(this, "Stopping Wireless@Home Service", Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@ package com.wireless.home;
 public class AppConstants
 {
 	public static final boolean SHOW_LOGS = true;
+	public static final boolean SHOW_TOASTS = false;
 	public static final boolean PLAY_MUSIC = true;
 	
 	
